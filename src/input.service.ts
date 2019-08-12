@@ -138,8 +138,7 @@ export class InputService {
             }
         }
 
-        let isZero = newValue == 0;
-        let operator = (isNegative && allowNegative && !isZero) ? "-" : "";
+        let operator = (isNegative && allowNegative) ? "-" : "";
         return operator + prefix + newRawValue + suffix;
     }
 
@@ -187,9 +186,9 @@ export class InputService {
     }
 
     changeToNegative(): void {
-        if (this.options.allowNegative && this.rawValue != "" && this.rawValue.charAt(0) != "-" && this.value != 0) {
+        if (this.options.allowNegative && this.rawValue != "" && this.rawValue.charAt(0) != "-") {
             // Apply the mask to ensure the min and max values are enforced.
-            this.rawValue = this.applyMask(false, "-" + this.rawValue);
+            this.rawValue = this.applyMask(false, "-" + (this.rawValue ? this.rawValue : '0'));
         }
     }
 
