@@ -83,7 +83,7 @@ var InputService = /** @class */ (function () {
         return parseFloat(value);
     };
     InputService.prototype.changeToNegative = function () {
-        if (this.options.allowNegative && this.rawValue != "" && this.rawValue.charAt(0) != "-" && this.value != 0) {
+        if (this.options.allowNegative && this.rawValue != "" && this.rawValue.charAt(0) != "-") {
             this.rawValue = "-" + this.rawValue;
         }
     };
