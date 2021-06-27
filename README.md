@@ -50,7 +50,7 @@ export class AppModule {}
 ### Using 
 
 ```html
-    <input currencyMask formControlName="value" />
+<input currencyMask formControlName="value" />
 ```
 
  * `ngModel` An attribute of type number. If is displayed `'$ 25.63'`, the attribute will be `'25.63'`.
@@ -60,8 +60,8 @@ export class AppModule {}
 You can set options...
 
 ```html
-    <!-- example for pt-BR money -->
-    <input currencyMask formControlName="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
+<!-- example for pt-BR money -->
+<input currencyMask formControlName="value" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"/>
 ```  
 
 Available options: 
@@ -74,11 +74,29 @@ Available options:
  * `suffix` - Money suffix (default: `''`)
  * `thousands` - Separator of thousands (default: `','`)
  * `nullable` - when true, the value of the clean field will be `null`, when false the value will be `0`
+ * `min` - The minimum value (default: `undefined`)
+ * `max` - The maximum value (default: `undefined`)
+ * `inputMode` - Determines how to handle numbers as the user types them (default: `FINANCIAL`)
+
+Input Modes:
+
+ * `FINANCIAL` - Numbers start at the highest precision decimal. Typing a number shifts numbers left.
+                 The decimal character is ignored. Most cash registers work this way. For example:
+   * Typing `'12'` results in `'0.12'`
+   * Typing `'1234'` results in `'12.34'`
+   * Typing `'1.234'` results in `'12.34'`
+ * `NATURAL` - Numbers start to the left of the decimal. Typing a number to the left of the decimal shifts
+               numbers left; typing to the right of the decimal replaces the next number. Most text inputs
+               and spreadsheets work this way. For example:
+   * Typing `'1234'` results in `'1234'`
+   * Typing `'1.234'` results in `'1.23'`
+   * Typing `'12.34'` results in `'12.34'`
+   * Typing `'123.4'` results in `'123.40'`
 
 You can also set options globally...
 
 ```ts
-import { NgxCurrencyModule } from "ngx-currency";
+import { CurrencyMaskInputMode, NgxCurrencyModule } from "ngx-currency";
 
 export const customCurrencyMaskConfig = {
     align: "right",
@@ -89,7 +107,10 @@ export const customCurrencyMaskConfig = {
     prefix: "R$ ",
     suffix: "",
     thousands: ".",
-    nullable: true
+    nullable: true,
+    min: null,
+    max: null,
+    inputMode: CurrencyMaskInputMode.FINANCIAL
 };
 
 @NgModule({
@@ -147,7 +168,17 @@ export class...
 Run `npm start` or `npm run demo` to start a development server on port 8000 with auto reload + tests.
 
 ### Testing
-Run `npm test` to run tests once or `npm run test:watch` to continually run tests.
+* Run `npm test` to run tests once
+* Run `npm run test:watch` to continually run tests in headless mode
+* Run `npm run test:watch-browser` to continually run tests in the Chrome browser
+
+When running in the Chrome browser, you can set code breakpoints to debug tests using these instructions:
+* From the main Karma browser page, click the `Debug` button to open the debug window
+* Press `ctrl + shift + i` to open Chrome developer tools
+* Press `ctrl + p` to search for a file to debug
+* Enter a file name like `input.handler.ts` and click the file
+* Within the file, click on a row number to set a breakpoint
+* Refresh the browser window to re-run tests and stop on the breakpoint
 
 ## License
 

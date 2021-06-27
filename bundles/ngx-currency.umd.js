@@ -1,9 +1,701 @@
-/**
- * ngx-currency - A very simple currency mask directive that allows using a number attribute with the ngModel.
- * @version v1.5.2
- * @author Neri Bez Fontana
- * @link https://github.com/nbfontana/ngx-currency#readme
- * @license MIT
- */
-!function(e,t){"object"==typeof exports&&"object"==typeof module?module.exports=t(require("@angular/core"),require("@angular/forms"),require("@angular/common")):"function"==typeof define&&define.amd?define(["@angular/core","@angular/forms","@angular/common"],t):"object"==typeof exports?exports.ngxBr=t(require("@angular/core"),require("@angular/forms"),require("@angular/common")):e.ngxBr=t(e.ng.core,e.ng.forms,e.ng.common)}(window,function(e,t,n){return function(e){var t={};function n(i){if(t[i])return t[i].exports;var r=t[i]={i:i,l:!1,exports:{}};return e[i].call(r.exports,r,r.exports,n),r.l=!0,r.exports}return n.m=e,n.c=t,n.d=function(e,t,i){n.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:i})},n.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},n.t=function(e,t){if(1&t&&(e=n(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var i=Object.create(null);if(n.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var r in e)n.d(i,r,function(t){return e[t]}.bind(null,r));return i},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=4)}([function(t,n){t.exports=e},function(e,t,n){"use strict";var i=this&&this.__decorate||function(e,t,n,i){var r,o=arguments.length,s=o<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,n):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,n,i);else for(var u=e.length-1;u>=0;u--)(r=e[u])&&(s=(o<3?r(s):o>3?r(t,n,s):r(t,n))||s);return o>3&&s&&Object.defineProperty(t,n,s),s},r=this&&this.__metadata||function(e,t){if("object"==typeof Reflect&&"function"==typeof Reflect.metadata)return Reflect.metadata(e,t)},o=this&&this.__param||function(e,t){return function(n,i){t(n,i,e)}};Object.defineProperty(t,"__esModule",{value:!0});var s=n(0),u=n(2),a=n(3),l=n(5);t.CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR={provide:u.NG_VALUE_ACCESSOR,useExisting:s.forwardRef(function(){return p}),multi:!0};var p=function(){function e(e,t,n){this.currencyMaskConfig=e,this.elementRef=t,this.keyValueDiffers=n,this.options={},this.optionsTemplate={align:"right",allowNegative:!0,allowZero:!0,decimal:".",precision:2,prefix:"$ ",suffix:"",thousands:",",nullable:!1},e&&(this.optionsTemplate=e),this.keyValueDiffer=n.find({}).create()}return e.prototype.ngAfterViewInit=function(){this.elementRef.nativeElement.style.textAlign=this.options?this.options.align:this.optionsTemplate.align},e.prototype.ngDoCheck=function(){this.keyValueDiffer.diff(this.options)&&(this.elementRef.nativeElement.style.textAlign=this.options.align?this.options.align:this.optionsTemplate.align,this.inputHandler.updateOptions(Object.assign({},this.optionsTemplate,this.options)))},e.prototype.ngOnInit=function(){this.inputHandler=new l.InputHandler(this.elementRef.nativeElement,Object.assign({},this.optionsTemplate,this.options))},e.prototype.handleBlur=function(e){this.inputHandler.getOnModelTouched().apply(e)},e.prototype.handleCut=function(e){this.isChromeAndroid()||this.inputHandler.handleCut(e)},e.prototype.handleInput=function(e){this.isChromeAndroid()&&this.inputHandler.handleInput(e)},e.prototype.handleKeydown=function(e){this.isChromeAndroid()||this.inputHandler.handleKeydown(e)},e.prototype.handleKeypress=function(e){this.isChromeAndroid()||this.inputHandler.handleKeypress(e)},e.prototype.handlePaste=function(e){this.isChromeAndroid()||this.inputHandler.handlePaste(e)},e.prototype.isChromeAndroid=function(){return/chrome/i.test(navigator.userAgent)&&/android/i.test(navigator.userAgent)},e.prototype.registerOnChange=function(e){this.inputHandler.setOnModelChange(e)},e.prototype.registerOnTouched=function(e){this.inputHandler.setOnModelTouched(e)},e.prototype.setDisabledState=function(e){this.elementRef.nativeElement.disabled=e},e.prototype.writeValue=function(e){this.inputHandler.setValue(e)},i([s.Input(),r("design:type",Object)],e.prototype,"options",void 0),i([s.HostListener("blur",["$event"]),r("design:type",Function),r("design:paramtypes",[Object]),r("design:returntype",void 0)],e.prototype,"handleBlur",null),i([s.HostListener("cut",["$event"]),r("design:type",Function),r("design:paramtypes",[Object]),r("design:returntype",void 0)],e.prototype,"handleCut",null),i([s.HostListener("input",["$event"]),r("design:type",Function),r("design:paramtypes",[Object]),r("design:returntype",void 0)],e.prototype,"handleInput",null),i([s.HostListener("keydown",["$event"]),r("design:type",Function),r("design:paramtypes",[Object]),r("design:returntype",void 0)],e.prototype,"handleKeydown",null),i([s.HostListener("keypress",["$event"]),r("design:type",Function),r("design:paramtypes",[Object]),r("design:returntype",void 0)],e.prototype,"handleKeypress",null),i([s.HostListener("paste",["$event"]),r("design:type",Function),r("design:paramtypes",[Object]),r("design:returntype",void 0)],e.prototype,"handlePaste",null),e=i([s.Directive({selector:"[currencyMask]",providers:[t.CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR]}),o(0,s.Optional()),o(0,s.Inject(a.CURRENCY_MASK_CONFIG)),r("design:paramtypes",[Object,s.ElementRef,s.KeyValueDiffers])],e)}();t.CurrencyMaskDirective=p},function(e,n){e.exports=t},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=n(0);t.CURRENCY_MASK_CONFIG=new i.InjectionToken("currency.mask.config")},function(e,t,n){"use strict";function i(e){for(var n in e)t.hasOwnProperty(n)||(t[n]=e[n])}Object.defineProperty(t,"__esModule",{value:!0}),i(n(1)),i(n(8))},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=n(6),r=function(){function e(e,t){this.inputService=new i.InputService(e,t)}return e.prototype.handleCut=function(e){var t=this;setTimeout(function(){t.inputService.updateFieldValue(),t.setValue(t.inputService.value),t.onModelChange(t.inputService.value)},0)},e.prototype.handleInput=function(e){var t=this.inputService.rawValue.charCodeAt(this.inputService.rawValue.length-1),n=this.inputService.rawValue.length,i=this.inputService.inputSelection.selectionEnd,r=this.inputService.storedRawValue.length;if(this.inputService.rawValue=this.inputService.storedRawValue,n==i&&1==Math.abs(n-r)){if(n<r&&this.inputService.removeNumber(8),n>r)switch(t){case 43:this.inputService.changeToPositive();break;case 45:this.inputService.changeToNegative();break;default:if(!this.inputService.canInputMoreNumbers)return;this.inputService.addNumber(t)}this.setCursorPosition(e),this.onModelChange(this.inputService.value)}else this.setCursorPosition(e)},e.prototype.handleKeydown=function(e){var t=e.which||e.charCode||e.keyCode;if(8==t||46==t||63272==t){e.preventDefault();var n=Math.abs(this.inputService.inputSelection.selectionEnd-this.inputService.inputSelection.selectionStart);0==n&&(this.inputService.removeNumber(t),this.onModelChange(this.inputService.value)),n>=this.inputService.rawValue.length-this.inputService.prefixLength()&&this.clearValue()}},e.prototype.clearValue=function(){this.setValue(this.inputService.isNullable()?null:0),this.onModelChange(this.inputService.value)},e.prototype.handleKeypress=function(e){var t=e.which||e.charCode||e.keyCode;if(97!==t||!e.ctrlKey){switch(t){case void 0:case 9:case 13:case 37:case 39:return;case 43:this.inputService.changeToPositive();break;case 45:this.inputService.changeToNegative();break;default:if(this.inputService.canInputMoreNumbers)Math.abs(this.inputService.inputSelection.selectionEnd-this.inputService.inputSelection.selectionStart)==this.inputService.rawValue.length&&this.setValue(0),this.inputService.addNumber(t)}e.preventDefault(),this.onModelChange(this.inputService.value)}},e.prototype.handlePaste=function(e){var t=this;setTimeout(function(){t.inputService.updateFieldValue(),t.setValue(t.inputService.value),t.onModelChange(t.inputService.value)},1)},e.prototype.updateOptions=function(e){this.inputService.updateOptions(e)},e.prototype.getOnModelChange=function(){return this.onModelChange},e.prototype.setOnModelChange=function(e){this.onModelChange=e},e.prototype.getOnModelTouched=function(){return this.onModelTouched},e.prototype.setOnModelTouched=function(e){this.onModelTouched=e},e.prototype.setValue=function(e){this.inputService.value=e},e.prototype.setCursorPosition=function(e){setTimeout(function(){e.target.setSelectionRange(e.target.value.length,e.target.value.length)},0)},e}();t.InputHandler=r},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=n(7),r=function(){function e(e,t){this.htmlInputElement=e,this.options=t,this.PER_AR_NUMBER=new Map,this.inputManager=new i.InputManager(e),this.initialize()}return e.prototype.initialize=function(){this.PER_AR_NUMBER.set("۰","0"),this.PER_AR_NUMBER.set("۱","1"),this.PER_AR_NUMBER.set("۲","2"),this.PER_AR_NUMBER.set("۳","3"),this.PER_AR_NUMBER.set("۴","4"),this.PER_AR_NUMBER.set("۵","5"),this.PER_AR_NUMBER.set("۶","6"),this.PER_AR_NUMBER.set("۷","7"),this.PER_AR_NUMBER.set("۸","8"),this.PER_AR_NUMBER.set("۹","9"),this.PER_AR_NUMBER.set("٠","0"),this.PER_AR_NUMBER.set("١","1"),this.PER_AR_NUMBER.set("٢","2"),this.PER_AR_NUMBER.set("٣","3"),this.PER_AR_NUMBER.set("٤","4"),this.PER_AR_NUMBER.set("٥","5"),this.PER_AR_NUMBER.set("٦","6"),this.PER_AR_NUMBER.set("٧","7"),this.PER_AR_NUMBER.set("٨","8"),this.PER_AR_NUMBER.set("٩","9")},e.prototype.addNumber=function(e){this.rawValue||(this.rawValue=this.applyMask(!1,"0"));var t=String.fromCharCode(e),n=this.inputSelection.selectionStart,i=this.inputSelection.selectionEnd;this.rawValue=this.rawValue.substring(0,n)+t+this.rawValue.substring(i,this.rawValue.length),this.updateFieldValue(n+1)},e.prototype.applyMask=function(e,t){var n=this.options,i=n.allowNegative,r=n.decimal,o=n.precision,s=n.prefix,u=n.suffix,a=n.thousands,l=(n.nullable,(t=e?new Number(t).toFixed(o):t).replace(/[^0-9\u0660-\u0669\u06F0-\u06F9]/g,""));if(!l)return"";var p=l.slice(0,l.length-o).replace(/^\u0660*/g,"").replace(/^\u06F0*/g,"").replace(/^0*/g,"").replace(/\B(?=([0-9\u0660-\u0669\u06F0-\u06F9]{3})+(?![0-9\u0660-\u0669\u06F0-\u06F9]))/g,a);a&&p.startsWith(a)&&(p=p.substring(1)),""==p&&(p="0");var c=p,h=l.slice(l.length-o);o>0&&(c+=r+h);var d=0==parseInt(p)&&(0==parseInt(h)||""==h);return(t.indexOf("-")>-1&&i&&!d?"-":"")+s+c+u},e.prototype.clearMask=function(e){if(this.isNullable()&&""===e)return null;var t=(e||"0").replace(this.options.prefix,"").replace(this.options.suffix,"");return this.options.thousands&&(t=t.replace(new RegExp("\\"+this.options.thousands,"g"),"")),this.options.decimal&&(t=t.replace(this.options.decimal,".")),this.PER_AR_NUMBER.forEach(function(e,n){var i=new RegExp(n,"g");t=t.replace(i,e)}),parseFloat(t)},e.prototype.changeToNegative=function(){this.options.allowNegative&&""!=this.rawValue&&"-"!=this.rawValue.charAt(0)&&(this.rawValue="-"+this.rawValue)},e.prototype.changeToPositive=function(){this.rawValue=this.rawValue.replace("-","")},e.prototype.removeNumber=function(e){if(this.isNullable()&&0==this.value)this.rawValue=null;else{var t=this.inputSelection.selectionEnd,n=this.inputSelection.selectionStart;n>this.rawValue.length-this.options.suffix.length&&(t=this.rawValue.length-this.options.suffix.length,n=this.rawValue.length-this.options.suffix.length);var i=this.rawValue.substr(n-1,1).match(/\d/)?0:-1;(8!=e||n-1!=0||this.rawValue.substr(n,1).match(/\d/))&&(46!=e&&63272!=e||0!==n||this.rawValue.substr(n+1,1).match(/\d/))||(i=1),t=46==e||63272==e?t+1:t,n=8==e?n-1:n,this.rawValue=this.rawValue.substring(0,n)+this.rawValue.substring(t,this.rawValue.length),this.updateFieldValue(n+i)}},e.prototype.updateFieldValue=function(e){var t=this.applyMask(!1,this.rawValue||"");e=null==e?this.rawValue.length:e,this.inputManager.updateValueAndCursor(t,this.rawValue.length,e)},e.prototype.updateOptions=function(e){var t=this.value;this.options=e,this.value=t},e.prototype.prefixLength=function(){return this.options.prefix.length},e.prototype.isNullable=function(){return this.options.nullable},Object.defineProperty(e.prototype,"canInputMoreNumbers",{get:function(){return this.inputManager.canInputMoreNumbers},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"inputSelection",{get:function(){return this.inputManager.inputSelection},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"rawValue",{get:function(){return this.inputManager.rawValue},set:function(e){this.inputManager.rawValue=e},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"storedRawValue",{get:function(){return this.inputManager.storedRawValue},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"value",{get:function(){return this.clearMask(this.rawValue)},set:function(e){this.rawValue=this.applyMask(!0,""+e)},enumerable:!0,configurable:!0}),e}();t.InputService=r},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var i=function(){function e(e){this.htmlInputElement=e}return e.prototype.setCursorAt=function(e){if(this.htmlInputElement.setSelectionRange)this.htmlInputElement.focus(),this.htmlInputElement.setSelectionRange(e,e);else if(this.htmlInputElement.createTextRange){var t=this.htmlInputElement.createTextRange();t.collapse(!0),t.moveEnd("character",e),t.moveStart("character",e),t.select()}},e.prototype.updateValueAndCursor=function(e,t,n){this.rawValue=e,n-=t-e.length,this.setCursorAt(n)},Object.defineProperty(e.prototype,"canInputMoreNumbers",{get:function(){var e=!(this.rawValue.length>=this.htmlInputElement.maxLength&&this.htmlInputElement.maxLength>=0),t=this.inputSelection.selectionStart,n=this.inputSelection.selectionEnd,i=!(t==n||!this.htmlInputElement.value.substring(t,n).match(/[^0-9\u0660-\u0669\u06F0-\u06F9]/)),r="0"==this.htmlInputElement.value.substring(0,1);return e||i||r},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"inputSelection",{get:function(){var e=0,t=0;if("number"==typeof this.htmlInputElement.selectionStart&&"number"==typeof this.htmlInputElement.selectionEnd)e=this.htmlInputElement.selectionStart,t=this.htmlInputElement.selectionEnd;else{var n=document.selection.createRange();if(n&&n.parentElement()==this.htmlInputElement){var i=this.htmlInputElement.value.length,r=this.htmlInputElement.value.replace(/\r\n/g,"\n"),o=this.htmlInputElement.createTextRange();o.moveToBookmark(n.getBookmark());var s=this.htmlInputElement.createTextRange();s.collapse(!1),o.compareEndPoints("StartToEnd",s)>-1?e=t=i:(e=-o.moveStart("character",-i),e+=r.slice(0,e).split("\n").length-1,o.compareEndPoints("EndToEnd",s)>-1?t=i:(t=-o.moveEnd("character",-i),t+=r.slice(0,t).split("\n").length-1))}}return{selectionStart:e,selectionEnd:t}},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"rawValue",{get:function(){return this.htmlInputElement&&this.htmlInputElement.value},set:function(e){this._storedRawValue=e,this.htmlInputElement&&(this.htmlInputElement.value=e)},enumerable:!0,configurable:!0}),Object.defineProperty(e.prototype,"storedRawValue",{get:function(){return this._storedRawValue},enumerable:!0,configurable:!0}),e}();t.InputManager=i},function(e,t,n){"use strict";var i=this&&this.__decorate||function(e,t,n,i){var r,o=arguments.length,s=o<3?t:null===i?i=Object.getOwnPropertyDescriptor(t,n):i;if("object"==typeof Reflect&&"function"==typeof Reflect.decorate)s=Reflect.decorate(e,t,n,i);else for(var u=e.length-1;u>=0;u--)(r=e[u])&&(s=(o<3?r(s):o>3?r(t,n,s):r(t,n))||s);return o>3&&s&&Object.defineProperty(t,n,s),s};Object.defineProperty(t,"__esModule",{value:!0});var r=n(0),o=n(9),s=n(2),u=n(1),a=n(3),l=function(){function e(){}var t;return t=e,e.forRoot=function(e){return{ngModule:t,providers:[{provide:a.CURRENCY_MASK_CONFIG,useValue:e}]}},e=t=i([r.NgModule({imports:[o.CommonModule,s.FormsModule],declarations:[u.CurrencyMaskDirective],exports:[u.CurrencyMaskDirective]})],e)}();t.NgxCurrencyModule=l},function(e,t){e.exports=n}])});
+(function (global, factory) {
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/forms'), require('@angular/common')) :
+    typeof define === 'function' && define.amd ? define('ngx-currency', ['exports', '@angular/core', '@angular/forms', '@angular/common'], factory) :
+    (global = global || self, factory(global['ngx-currency'] = {}, global.ng.core, global.ng.forms, global.ng.common));
+}(this, (function (exports, core, forms, common) { 'use strict';
+
+    (function (CurrencyMaskInputMode) {
+        CurrencyMaskInputMode[CurrencyMaskInputMode["FINANCIAL"] = 0] = "FINANCIAL";
+        CurrencyMaskInputMode[CurrencyMaskInputMode["NATURAL"] = 1] = "NATURAL";
+    })(exports.CurrencyMaskInputMode || (exports.CurrencyMaskInputMode = {}));
+    var CURRENCY_MASK_CONFIG = new core.InjectionToken("currency.mask.config");
+
+    var InputManager = /** @class */ (function () {
+        function InputManager(htmlInputElement) {
+            this.htmlInputElement = htmlInputElement;
+        }
+        InputManager.prototype.setCursorAt = function (position) {
+            if (this.htmlInputElement.setSelectionRange) {
+                this.htmlInputElement.focus();
+                this.htmlInputElement.setSelectionRange(position, position);
+            }
+            else if (this.htmlInputElement.createTextRange) {
+                var textRange = this.htmlInputElement.createTextRange();
+                textRange.collapse(true);
+                textRange.moveEnd("character", position);
+                textRange.moveStart("character", position);
+                textRange.select();
+            }
+        };
+        InputManager.prototype.updateValueAndCursor = function (newRawValue, oldLength, selectionStart) {
+            this.rawValue = newRawValue;
+            var newLength = newRawValue.length;
+            selectionStart = selectionStart - (oldLength - newLength);
+            this.setCursorAt(selectionStart);
+        };
+        Object.defineProperty(InputManager.prototype, "canInputMoreNumbers", {
+            get: function () {
+                var onlyNumbers = this.rawValue.replace(/[^0-9\u0660-\u0669\u06F0-\u06F9]/g, "");
+                var haventReachedMaxLength = !(onlyNumbers.length >= this.htmlInputElement.maxLength && this.htmlInputElement.maxLength >= 0);
+                var selectionStart = this.inputSelection.selectionStart;
+                var selectionEnd = this.inputSelection.selectionEnd;
+                var haveNumberSelected = !!(selectionStart != selectionEnd &&
+                    this.htmlInputElement.value.substring(selectionStart, selectionEnd).match(/[^0-9\u0660-\u0669\u06F0-\u06F9]/));
+                var startWithZero = (this.htmlInputElement.value.substring(0, 1) == "0");
+                return haventReachedMaxLength || haveNumberSelected || startWithZero;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputManager.prototype, "inputSelection", {
+            get: function () {
+                var selectionStart = 0;
+                var selectionEnd = 0;
+                if (typeof this.htmlInputElement.selectionStart == "number" && typeof this.htmlInputElement.selectionEnd == "number") {
+                    selectionStart = this.htmlInputElement.selectionStart;
+                    selectionEnd = this.htmlInputElement.selectionEnd;
+                }
+                else {
+                    var range = document.selection.createRange();
+                    if (range && range.parentElement() == this.htmlInputElement) {
+                        var lenght = this.htmlInputElement.value.length;
+                        var normalizedValue = this.htmlInputElement.value.replace(/\r\n/g, "\n");
+                        var startRange = this.htmlInputElement.createTextRange();
+                        startRange.moveToBookmark(range.getBookmark());
+                        var endRange = this.htmlInputElement.createTextRange();
+                        endRange.collapse(false);
+                        if (startRange.compareEndPoints("StartToEnd", endRange) > -1) {
+                            selectionStart = selectionEnd = lenght;
+                        }
+                        else {
+                            selectionStart = -startRange.moveStart("character", -lenght);
+                            selectionStart += normalizedValue.slice(0, selectionStart).split("\n").length - 1;
+                            if (startRange.compareEndPoints("EndToEnd", endRange) > -1) {
+                                selectionEnd = lenght;
+                            }
+                            else {
+                                selectionEnd = -startRange.moveEnd("character", -lenght);
+                                selectionEnd += normalizedValue.slice(0, selectionEnd).split("\n").length - 1;
+                            }
+                        }
+                    }
+                }
+                return {
+                    selectionStart: selectionStart,
+                    selectionEnd: selectionEnd
+                };
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputManager.prototype, "rawValue", {
+            get: function () {
+                return this.htmlInputElement && this.htmlInputElement.value;
+            },
+            set: function (value) {
+                this._storedRawValue = value;
+                if (this.htmlInputElement) {
+                    this.htmlInputElement.value = value;
+                }
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputManager.prototype, "storedRawValue", {
+            get: function () {
+                return this._storedRawValue || '';
+            },
+            enumerable: false,
+            configurable: true
+        });
+        return InputManager;
+    }());
+
+    var InputService = /** @class */ (function () {
+        function InputService(htmlInputElement, options) {
+            this.htmlInputElement = htmlInputElement;
+            this.options = options;
+            this.SINGLE_DIGIT_REGEX = new RegExp(/^[0-9\u0660-\u0669\u06F0-\u06F9]$/);
+            this.ONLY_NUMBERS_REGEX = new RegExp(/[^0-9\u0660-\u0669\u06F0-\u06F9]/g);
+            this.PER_AR_NUMBER = new Map();
+            this.inputManager = new InputManager(htmlInputElement);
+            this.initialize();
+        }
+        InputService.prototype.initialize = function () {
+            this.PER_AR_NUMBER.set("\u06F0", "0");
+            this.PER_AR_NUMBER.set("\u06F1", "1");
+            this.PER_AR_NUMBER.set("\u06F2", "2");
+            this.PER_AR_NUMBER.set("\u06F3", "3");
+            this.PER_AR_NUMBER.set("\u06F4", "4");
+            this.PER_AR_NUMBER.set("\u06F5", "5");
+            this.PER_AR_NUMBER.set("\u06F6", "6");
+            this.PER_AR_NUMBER.set("\u06F7", "7");
+            this.PER_AR_NUMBER.set("\u06F8", "8");
+            this.PER_AR_NUMBER.set("\u06F9", "9");
+            this.PER_AR_NUMBER.set("\u0660", "0");
+            this.PER_AR_NUMBER.set("\u0661", "1");
+            this.PER_AR_NUMBER.set("\u0662", "2");
+            this.PER_AR_NUMBER.set("\u0663", "3");
+            this.PER_AR_NUMBER.set("\u0664", "4");
+            this.PER_AR_NUMBER.set("\u0665", "5");
+            this.PER_AR_NUMBER.set("\u0666", "6");
+            this.PER_AR_NUMBER.set("\u0667", "7");
+            this.PER_AR_NUMBER.set("\u0668", "8");
+            this.PER_AR_NUMBER.set("\u0669", "9");
+        };
+        InputService.prototype.addNumber = function (keyCode) {
+            var _a = this.options, decimal = _a.decimal, precision = _a.precision, inputMode = _a.inputMode;
+            var keyChar = String.fromCharCode(keyCode);
+            var isDecimalChar = keyChar === this.options.decimal;
+            if (!this.rawValue) {
+                this.rawValue = this.applyMask(false, keyChar);
+                var selectionStart = undefined;
+                if (inputMode === exports.CurrencyMaskInputMode.NATURAL && precision > 0) {
+                    selectionStart = this.rawValue.indexOf(decimal);
+                    if (isDecimalChar) {
+                        selectionStart++;
+                    }
+                }
+                this.updateFieldValue(selectionStart);
+            }
+            else {
+                var selectionStart = this.inputSelection.selectionStart;
+                var selectionEnd = this.inputSelection.selectionEnd;
+                var rawValueStart = this.rawValue.substring(0, selectionStart);
+                var rawValueEnd = this.rawValue.substring(selectionEnd, this.rawValue.length);
+                // In natural mode, replace decimals instead of shifting them.
+                var inDecimalPortion = rawValueStart.indexOf(decimal) !== -1;
+                if (inputMode === exports.CurrencyMaskInputMode.NATURAL && inDecimalPortion && selectionStart === selectionEnd) {
+                    rawValueEnd = rawValueEnd.substring(1);
+                }
+                var newValue = rawValueStart + keyChar + rawValueEnd;
+                var nextSelectionStart = selectionStart + 1;
+                var isDecimalOrThousands = isDecimalChar || keyChar === this.options.thousands;
+                if (isDecimalOrThousands && keyChar === rawValueEnd[0]) {
+                    // If the cursor is just before the decimal or thousands separator and the user types the
+                    // decimal or thousands separator, move the cursor past it.
+                    nextSelectionStart++;
+                }
+                else if (!this.SINGLE_DIGIT_REGEX.test(keyChar)) {
+                    // Ignore other non-numbers.
+                    return;
+                }
+                this.rawValue = newValue;
+                this.updateFieldValue(nextSelectionStart);
+            }
+        };
+        InputService.prototype.applyMask = function (isNumber, rawValue, disablePadAndTrim) {
+            if (disablePadAndTrim === void 0) { disablePadAndTrim = false; }
+            var _a = this.options, allowNegative = _a.allowNegative, decimal = _a.decimal, precision = _a.precision, prefix = _a.prefix, suffix = _a.suffix, thousands = _a.thousands, min = _a.min, max = _a.max, inputMode = _a.inputMode;
+            rawValue = isNumber ? new Number(rawValue).toFixed(precision) : rawValue;
+            var onlyNumbers = rawValue.replace(this.ONLY_NUMBERS_REGEX, "");
+            if (!onlyNumbers && rawValue !== decimal) {
+                return "";
+            }
+            if (inputMode === exports.CurrencyMaskInputMode.NATURAL && !isNumber && !disablePadAndTrim) {
+                rawValue = this.padOrTrimPrecision(rawValue);
+                onlyNumbers = rawValue.replace(this.ONLY_NUMBERS_REGEX, "");
+            }
+            var integerPart = onlyNumbers.slice(0, onlyNumbers.length - precision)
+                .replace(/^\u0660*/g, "")
+                .replace(/^\u06F0*/g, "")
+                .replace(/^0*/g, "");
+            if (integerPart == "") {
+                integerPart = "0";
+            }
+            var integerValue = parseInt(integerPart);
+            integerPart = integerPart.replace(/\B(?=([0-9\u0660-\u0669\u06F0-\u06F9]{3})+(?![0-9\u0660-\u0669\u06F0-\u06F9]))/g, thousands);
+            if (thousands && integerPart.startsWith(thousands)) {
+                integerPart = integerPart.substring(1);
+            }
+            var newRawValue = integerPart;
+            var decimalPart = onlyNumbers.slice(onlyNumbers.length - precision);
+            var decimalValue = parseInt(decimalPart) || 0;
+            var isNegative = rawValue.indexOf("-") > -1;
+            // Ensure max is at least as large as min.
+            max = (this.isNullOrUndefined(max) || this.isNullOrUndefined(min)) ? max : Math.max(max, min);
+            // Restrict to the min and max values.
+            var newValue = integerValue + (decimalValue / 100);
+            newValue = isNegative ? -newValue : newValue;
+            if (!this.isNullOrUndefined(max) && newValue > max) {
+                return this.applyMask(true, max + '');
+            }
+            else if (!this.isNullOrUndefined(min) && newValue < min) {
+                return this.applyMask(true, min + '');
+            }
+            if (precision > 0) {
+                if (newRawValue == "0" && decimalPart.length < precision) {
+                    newRawValue += decimal + "0".repeat(precision - 1) + decimalPart;
+                }
+                else {
+                    newRawValue += decimal + decimalPart;
+                }
+            }
+            var operator = (isNegative && allowNegative) ? "-" : "";
+            return operator + prefix + newRawValue + suffix;
+        };
+        InputService.prototype.padOrTrimPrecision = function (rawValue) {
+            var _a = this.options, decimal = _a.decimal, precision = _a.precision;
+            var decimalIndex = rawValue.lastIndexOf(decimal);
+            if (decimalIndex === -1) {
+                decimalIndex = rawValue.length;
+                rawValue += decimal;
+            }
+            var decimalPortion = rawValue.substring(decimalIndex).replace(this.ONLY_NUMBERS_REGEX, "");
+            var actualPrecision = decimalPortion.length;
+            if (actualPrecision < precision) {
+                for (var i = actualPrecision; i < precision; i++) {
+                    decimalPortion += '0';
+                }
+            }
+            else if (actualPrecision > precision) {
+                decimalPortion = decimalPortion.substring(0, decimalPortion.length + precision - actualPrecision);
+            }
+            return rawValue.substring(0, decimalIndex) + decimal + decimalPortion;
+        };
+        InputService.prototype.clearMask = function (rawValue) {
+            if (this.isNullable() && rawValue === "")
+                return null;
+            var value = (rawValue || "0").replace(this.options.prefix, "").replace(this.options.suffix, "");
+            if (this.options.thousands) {
+                value = value.replace(new RegExp("\\" + this.options.thousands, "g"), "");
+            }
+            if (this.options.decimal) {
+                value = value.replace(this.options.decimal, ".");
+            }
+            this.PER_AR_NUMBER.forEach(function (val, key) {
+                var re = new RegExp(key, "g");
+                value = value.replace(re, val);
+            });
+            return parseFloat(value);
+        };
+        InputService.prototype.changeToNegative = function () {
+            if (this.options.allowNegative && this.rawValue != "" && this.rawValue.charAt(0) != "-") {
+                // Apply the mask to ensure the min and max values are enforced.
+                this.rawValue = this.applyMask(false, "-" + (this.rawValue ? this.rawValue : '0'));
+            }
+        };
+        InputService.prototype.changeToPositive = function () {
+            // Apply the mask to ensure the min and max values are enforced.
+            this.rawValue = this.applyMask(false, this.rawValue.replace("-", ""));
+        };
+        InputService.prototype.removeNumber = function (keyCode) {
+            var _a = this.options, decimal = _a.decimal, thousands = _a.thousands, prefix = _a.prefix, suffix = _a.suffix, inputMode = _a.inputMode;
+            if (this.isNullable() && this.value == 0) {
+                this.rawValue = null;
+                return;
+            }
+            var selectionEnd = this.inputSelection.selectionEnd;
+            var selectionStart = this.inputSelection.selectionStart;
+            var suffixStart = this.rawValue.length - suffix.length;
+            selectionEnd = Math.min(suffixStart, Math.max(selectionEnd, prefix.length));
+            selectionStart = Math.min(suffixStart, Math.max(selectionStart, prefix.length));
+            // Check if selection was entirely in the prefix or suffix. 
+            if (selectionStart === selectionEnd &&
+                this.inputSelection.selectionStart !== this.inputSelection.selectionEnd) {
+                this.updateFieldValue(selectionStart);
+                return;
+            }
+            var decimalIndex = this.rawValue.indexOf(decimal);
+            if (decimalIndex === -1) {
+                decimalIndex = this.rawValue.length;
+            }
+            var shiftSelection = 0;
+            var insertChars = '';
+            var isCursorInDecimals = decimalIndex < selectionEnd;
+            var isCursorImmediatelyAfterDecimalPoint = decimalIndex + 1 === selectionEnd;
+            if (selectionEnd === selectionStart) {
+                if (keyCode == 8) {
+                    if (selectionStart <= prefix.length) {
+                        return;
+                    }
+                    selectionStart--;
+                    // If previous char isn't a number, go back one more.
+                    if (!this.rawValue.substr(selectionStart, 1).match(/\d/)) {
+                        selectionStart--;
+                    }
+                    // In natural mode, jump backwards when in decimal portion of number.
+                    if (inputMode === exports.CurrencyMaskInputMode.NATURAL && isCursorInDecimals) {
+                        shiftSelection = -1;
+                        // when removing a single whole number, replace it with 0
+                        if (isCursorImmediatelyAfterDecimalPoint && this.value < 10 && this.value > -10) {
+                            insertChars += '0';
+                        }
+                    }
+                }
+                else if (keyCode == 46 || keyCode == 63272) {
+                    if (selectionStart === suffixStart) {
+                        return;
+                    }
+                    selectionEnd++;
+                    // If next char isn't a number, go one more.
+                    if (!this.rawValue.substr(selectionStart, 1).match(/\d/)) {
+                        selectionStart++;
+                        selectionEnd++;
+                    }
+                }
+            }
+            // In natural mode, replace decimals with 0s.
+            if (inputMode === exports.CurrencyMaskInputMode.NATURAL && selectionStart > decimalIndex) {
+                var replacedDecimalCount = selectionEnd - selectionStart;
+                for (var i = 0; i < replacedDecimalCount; i++) {
+                    insertChars += '0';
+                }
+            }
+            var selectionFromEnd = this.rawValue.length - selectionEnd;
+            this.rawValue = this.rawValue.substring(0, selectionStart) + insertChars + this.rawValue.substring(selectionEnd);
+            // Remove leading thousand separator from raw value.
+            var startChar = this.rawValue.substr(prefix.length, 1);
+            if (startChar === thousands) {
+                this.rawValue = this.rawValue.substring(0, prefix.length) + this.rawValue.substring(prefix.length + 1);
+                selectionFromEnd = Math.min(selectionFromEnd, this.rawValue.length - prefix.length);
+            }
+            this.updateFieldValue(this.rawValue.length - selectionFromEnd + shiftSelection, true);
+        };
+        InputService.prototype.updateFieldValue = function (selectionStart, disablePadAndTrim) {
+            if (disablePadAndTrim === void 0) { disablePadAndTrim = false; }
+            var newRawValue = this.applyMask(false, this.rawValue || "", disablePadAndTrim);
+            selectionStart = selectionStart == undefined ? this.rawValue.length : selectionStart;
+            selectionStart = Math.max(this.options.prefix.length, Math.min(selectionStart, this.rawValue.length - this.options.suffix.length));
+            this.inputManager.updateValueAndCursor(newRawValue, this.rawValue.length, selectionStart);
+        };
+        InputService.prototype.updateOptions = function (options) {
+            var value = this.value;
+            this.options = options;
+            this.value = value;
+        };
+        InputService.prototype.prefixLength = function () {
+            return this.options.prefix.length;
+        };
+        InputService.prototype.suffixLength = function () {
+            return this.options.suffix.length;
+        };
+        InputService.prototype.isNullable = function () {
+            return this.options.nullable;
+        };
+        Object.defineProperty(InputService.prototype, "canInputMoreNumbers", {
+            get: function () {
+                return this.inputManager.canInputMoreNumbers;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputService.prototype, "inputSelection", {
+            get: function () {
+                return this.inputManager.inputSelection;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputService.prototype, "rawValue", {
+            get: function () {
+                return this.inputManager.rawValue;
+            },
+            set: function (value) {
+                this.inputManager.rawValue = value;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputService.prototype, "storedRawValue", {
+            get: function () {
+                return this.inputManager.storedRawValue;
+            },
+            enumerable: false,
+            configurable: true
+        });
+        Object.defineProperty(InputService.prototype, "value", {
+            get: function () {
+                return this.clearMask(this.rawValue);
+            },
+            set: function (value) {
+                this.rawValue = this.applyMask(true, "" + value);
+            },
+            enumerable: false,
+            configurable: true
+        });
+        InputService.prototype.isNullOrUndefined = function (value) {
+            return value === null || value === undefined;
+        };
+        return InputService;
+    }());
+
+    var InputHandler = /** @class */ (function () {
+        function InputHandler(htmlInputElement, options) {
+            this.inputService = new InputService(htmlInputElement, options);
+        }
+        InputHandler.prototype.handleCut = function (event) {
+            var _this = this;
+            setTimeout(function () {
+                _this.inputService.updateFieldValue();
+                _this.setValue(_this.inputService.value);
+                _this.onModelChange(_this.inputService.value);
+            }, 0);
+        };
+        InputHandler.prototype.handleInput = function (event) {
+            var _this = this;
+            var selectionStart = this.inputService.inputSelection.selectionStart;
+            var keyCode = this.inputService.rawValue.charCodeAt(selectionStart - 1);
+            var rawValueLength = this.inputService.rawValue.length;
+            var storedRawValueLength = this.inputService.storedRawValue.length;
+            if (Math.abs(rawValueLength - storedRawValueLength) != 1) {
+                this.inputService.updateFieldValue(selectionStart);
+                this.onModelChange(this.inputService.value);
+                return;
+            }
+            // Restore the old value.
+            this.inputService.rawValue = this.inputService.storedRawValue;
+            if (rawValueLength < storedRawValueLength) {
+                // Chrome Android seems to move the cursor in response to a backspace AFTER processing the
+                // input event, so we need to wrap this in a timeout.
+                this.timer(function () {
+                    // Move the cursor to just after the deleted value.
+                    _this.inputService.updateFieldValue(selectionStart + 1);
+                    // Then backspace it.
+                    _this.inputService.removeNumber(8);
+                    _this.onModelChange(_this.inputService.value);
+                }, 0);
+            }
+            if (rawValueLength > storedRawValueLength) {
+                // Move the cursor to just before the new value.
+                this.inputService.updateFieldValue(selectionStart - 1);
+                // Process the character like a keypress.
+                this.handleKeypressImpl(keyCode);
+            }
+        };
+        InputHandler.prototype.handleKeydown = function (event) {
+            var keyCode = event.which || event.charCode || event.keyCode;
+            if (keyCode == 8 || keyCode == 46 || keyCode == 63272) {
+                event.preventDefault();
+                if (this.inputService.inputSelection.selectionStart <= this.inputService.prefixLength() &&
+                    this.inputService.inputSelection.selectionEnd >= this.inputService.rawValue.length - this.inputService.suffixLength()) {
+                    this.clearValue();
+                }
+                else {
+                    this.inputService.removeNumber(keyCode);
+                    this.onModelChange(this.inputService.value);
+                }
+            }
+        };
+        InputHandler.prototype.clearValue = function () {
+            this.setValue(this.inputService.isNullable() ? null : 0);
+            this.onModelChange(this.inputService.value);
+        };
+        InputHandler.prototype.handleKeypress = function (event) {
+            var keyCode = event.which || event.charCode || event.keyCode;
+            event.preventDefault();
+            if (keyCode === 97 && event.ctrlKey) {
+                return;
+            }
+            this.handleKeypressImpl(keyCode);
+        };
+        InputHandler.prototype.handleKeypressImpl = function (keyCode) {
+            switch (keyCode) {
+                case undefined:
+                case 9:
+                case 13:
+                    return;
+                case 43:
+                    this.inputService.changeToPositive();
+                    break;
+                case 45:
+                    this.inputService.changeToNegative();
+                    break;
+                default:
+                    if (this.inputService.canInputMoreNumbers) {
+                        var selectionRangeLength = Math.abs(this.inputService.inputSelection.selectionEnd - this.inputService.inputSelection.selectionStart);
+                        if (selectionRangeLength == this.inputService.rawValue.length) {
+                            this.setValue(null);
+                        }
+                        this.inputService.addNumber(keyCode);
+                    }
+                    break;
+            }
+            this.onModelChange(this.inputService.value);
+        };
+        InputHandler.prototype.handlePaste = function (event) {
+            var _this = this;
+            setTimeout(function () {
+                _this.inputService.updateFieldValue();
+                _this.setValue(_this.inputService.value);
+                _this.onModelChange(_this.inputService.value);
+            }, 1);
+        };
+        InputHandler.prototype.updateOptions = function (options) {
+            this.inputService.updateOptions(options);
+        };
+        InputHandler.prototype.getOnModelChange = function () {
+            return this.onModelChange;
+        };
+        InputHandler.prototype.setOnModelChange = function (callbackFunction) {
+            this.onModelChange = callbackFunction;
+        };
+        InputHandler.prototype.getOnModelTouched = function () {
+            return this.onModelTouched;
+        };
+        InputHandler.prototype.setOnModelTouched = function (callbackFunction) {
+            this.onModelTouched = callbackFunction;
+        };
+        InputHandler.prototype.setValue = function (value) {
+            this.inputService.value = value;
+        };
+        /**
+         * Passthrough to setTimeout that can be stubbed out in tests.
+         */
+        InputHandler.prototype.timer = function (callback, delayMillis) {
+            setTimeout(callback, delayMillis);
+        };
+        return InputHandler;
+    }());
+
+    var CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR = {
+        provide: forms.NG_VALUE_ACCESSOR,
+        useExisting: core.forwardRef(function () { return CurrencyMaskDirective; }),
+        multi: true,
+    };
+    var CurrencyMaskDirective = /** @class */ (function () {
+        function CurrencyMaskDirective(currencyMaskConfig, elementRef, keyValueDiffers) {
+            this.currencyMaskConfig = currencyMaskConfig;
+            this.elementRef = elementRef;
+            this.keyValueDiffers = keyValueDiffers;
+            this.options = {};
+            this.optionsTemplate = {
+                align: "right",
+                allowNegative: true,
+                allowZero: true,
+                decimal: ".",
+                precision: 2,
+                prefix: "$ ",
+                suffix: "",
+                thousands: ",",
+                nullable: false,
+                inputMode: exports.CurrencyMaskInputMode.FINANCIAL
+            };
+            if (currencyMaskConfig) {
+                this.optionsTemplate = currencyMaskConfig;
+            }
+            this.keyValueDiffer = keyValueDiffers.find({}).create();
+        }
+        CurrencyMaskDirective.prototype.ngAfterViewInit = function () {
+            this.elementRef.nativeElement.style.textAlign = this.options && this.options.align ? this.options.align : this.optionsTemplate.align;
+        };
+        CurrencyMaskDirective.prototype.ngDoCheck = function () {
+            if (this.keyValueDiffer.diff(this.options)) {
+                this.elementRef.nativeElement.style.textAlign = this.options.align ? this.options.align : this.optionsTemplate.align;
+                this.inputHandler.updateOptions(Object.assign({}, this.optionsTemplate, this.options));
+            }
+        };
+        CurrencyMaskDirective.prototype.ngOnInit = function () {
+            this.inputHandler = new InputHandler(this.elementRef.nativeElement, Object.assign({}, this.optionsTemplate, this.options));
+        };
+        CurrencyMaskDirective.prototype.handleBlur = function (event) {
+            this.inputHandler.getOnModelTouched().apply(event);
+        };
+        CurrencyMaskDirective.prototype.handleCut = function (event) {
+            if (!this.isChromeAndroid()) {
+                !this.isReadOnly() && this.inputHandler.handleCut(event);
+            }
+        };
+        CurrencyMaskDirective.prototype.handleInput = function (event) {
+            if (this.isChromeAndroid()) {
+                !this.isReadOnly() && this.inputHandler.handleInput(event);
+            }
+        };
+        CurrencyMaskDirective.prototype.handleKeydown = function (event) {
+            if (!this.isChromeAndroid()) {
+                !this.isReadOnly() && this.inputHandler.handleKeydown(event);
+            }
+        };
+        CurrencyMaskDirective.prototype.handleKeypress = function (event) {
+            if (!this.isChromeAndroid()) {
+                !this.isReadOnly() && this.inputHandler.handleKeypress(event);
+            }
+        };
+        CurrencyMaskDirective.prototype.handlePaste = function (event) {
+            if (!this.isChromeAndroid()) {
+                !this.isReadOnly() && this.inputHandler.handlePaste(event);
+            }
+        };
+        CurrencyMaskDirective.prototype.handleDrop = function (event) {
+            if (!this.isChromeAndroid()) {
+                event.preventDefault();
+            }
+        };
+        CurrencyMaskDirective.prototype.isChromeAndroid = function () {
+            return /chrome/i.test(navigator.userAgent) && /android/i.test(navigator.userAgent);
+        };
+        CurrencyMaskDirective.prototype.isReadOnly = function () {
+            return this.elementRef.nativeElement.hasAttribute('readonly');
+        };
+        CurrencyMaskDirective.prototype.registerOnChange = function (callbackFunction) {
+            this.inputHandler.setOnModelChange(callbackFunction);
+        };
+        CurrencyMaskDirective.prototype.registerOnTouched = function (callbackFunction) {
+            this.inputHandler.setOnModelTouched(callbackFunction);
+        };
+        CurrencyMaskDirective.prototype.setDisabledState = function (value) {
+            this.elementRef.nativeElement.disabled = value;
+        };
+        CurrencyMaskDirective.prototype.writeValue = function (value) {
+            this.inputHandler.setValue(value);
+        };
+        CurrencyMaskDirective.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CURRENCY_MASK_CONFIG,] }] },
+            { type: core.ElementRef },
+            { type: core.KeyValueDiffers }
+        ]; };
+        CurrencyMaskDirective.decorators = [
+            { type: core.Directive, args: [{
+                        selector: "[currencyMask]",
+                        providers: [CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR]
+                    },] }
+        ];
+        CurrencyMaskDirective.ctorParameters = function () { return [
+            { type: undefined, decorators: [{ type: core.Optional }, { type: core.Inject, args: [CURRENCY_MASK_CONFIG,] }] },
+            { type: core.ElementRef },
+            { type: core.KeyValueDiffers }
+        ]; };
+        CurrencyMaskDirective.propDecorators = {
+            options: [{ type: core.Input }],
+            handleBlur: [{ type: core.HostListener, args: ["blur", ["$event"],] }],
+            handleCut: [{ type: core.HostListener, args: ["cut", ["$event"],] }],
+            handleInput: [{ type: core.HostListener, args: ["input", ["$event"],] }],
+            handleKeydown: [{ type: core.HostListener, args: ["keydown", ["$event"],] }],
+            handleKeypress: [{ type: core.HostListener, args: ["keypress", ["$event"],] }],
+            handlePaste: [{ type: core.HostListener, args: ["paste", ["$event"],] }],
+            handleDrop: [{ type: core.HostListener, args: ["drop", ["$event"],] }]
+        };
+        return CurrencyMaskDirective;
+    }());
+
+    var NgxCurrencyModule = /** @class */ (function () {
+        function NgxCurrencyModule() {
+        }
+        NgxCurrencyModule.forRoot = function (config) {
+            return {
+                ngModule: NgxCurrencyModule,
+                providers: [{
+                        provide: CURRENCY_MASK_CONFIG,
+                        useValue: config,
+                    }]
+            };
+        };
+        NgxCurrencyModule.decorators = [
+            { type: core.NgModule, args: [{
+                        imports: [common.CommonModule, forms.FormsModule],
+                        declarations: [CurrencyMaskDirective],
+                        exports: [CurrencyMaskDirective]
+                    },] }
+        ];
+        return NgxCurrencyModule;
+    }());
+
+    exports.CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR = CURRENCYMASKDIRECTIVE_VALUE_ACCESSOR;
+    exports.CurrencyMaskDirective = CurrencyMaskDirective;
+    exports.NgxCurrencyModule = NgxCurrencyModule;
+    exports.ɵa = CURRENCY_MASK_CONFIG;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
+
+})));
 //# sourceMappingURL=ngx-currency.umd.js.map

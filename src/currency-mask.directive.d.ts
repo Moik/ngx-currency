@@ -10,17 +10,7 @@ export declare class CurrencyMaskDirective implements AfterViewInit, ControlValu
     options: Partial<CurrencyMaskConfig>;
     inputHandler: InputHandler;
     keyValueDiffer: KeyValueDiffer<any, any>;
-    optionsTemplate: {
-        align: string;
-        allowNegative: boolean;
-        allowZero: boolean;
-        decimal: string;
-        precision: number;
-        prefix: string;
-        suffix: string;
-        thousands: string;
-        nullable: boolean;
-    };
+    optionsTemplate: CurrencyMaskConfig;
     constructor(currencyMaskConfig: CurrencyMaskConfig, elementRef: ElementRef, keyValueDiffers: KeyValueDiffers);
     ngAfterViewInit(): void;
     ngDoCheck(): void;
@@ -31,7 +21,9 @@ export declare class CurrencyMaskDirective implements AfterViewInit, ControlValu
     handleKeydown(event: any): void;
     handleKeypress(event: any): void;
     handlePaste(event: any): void;
+    handleDrop(event: any): void;
     isChromeAndroid(): boolean;
+    isReadOnly(): boolean;
     registerOnChange(callbackFunction: Function): void;
     registerOnTouched(callbackFunction: Function): void;
     setDisabledState(value: boolean): void;

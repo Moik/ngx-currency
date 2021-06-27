@@ -8,6 +8,7 @@ export declare class InputHandler {
     handleKeydown(event: any): void;
     clearValue(): void;
     handleKeypress(event: any): void;
+    private handleKeypressImpl;
     handlePaste(event: any): void;
     updateOptions(options: any): void;
     getOnModelChange(): Function;
@@ -15,5 +16,8 @@ export declare class InputHandler {
     getOnModelTouched(): Function;
     setOnModelTouched(callbackFunction: Function): void;
     setValue(value: number): void;
-    private setCursorPosition;
+    /**
+     * Passthrough to setTimeout that can be stubbed out in tests.
+     */
+    private timer;
 }
